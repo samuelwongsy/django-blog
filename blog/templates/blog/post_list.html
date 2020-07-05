@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class='centerstage'>
+        
+        {% for post in post_list %}
+            <div class='post'>
+                <h1><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                <div class='date'>
+                    <p>Published on: {{ post.published_date|date:'d M Y, D' }}</p>
+                </div>
+                <a href="{% url 'blog:post_detail' pk=post.pk %}">Comments: {{ post.approve_comments.count }}</a>
+            </div>
+            {% empty %}
+            <h1>No posts! Click 'New Post' to create a new draft!</h1>
+        {% endfor %}
+            
+    </div>
+{% endblock content %}
+    
